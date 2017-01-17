@@ -1,3 +1,4 @@
+import sys
 import twitter
 from datetime import datetime
 from time import sleep
@@ -11,12 +12,12 @@ def main():
 	                      access_token_key='817160799819010048-PPnDnUu2uZqmuXMgIgfMGZ4oZr3SXqm',
 	                      access_token_secret='Uv4uWr5lqCnaA7zjzcIzkIU87KZz31lJJ8cyYUn315e8E')
 
-	usersToImpersonate = {"TheEllenShow" : [], "LEIitalia" : [] }
+	usersToImpersonate = {"TheEllenShow" : [], "LEIitalia" : []}
 	startTime = datetime.now()
 	impersonatedStatuses = []
 	refreshRate = 10 #minutes
 
-	while true:
+	while True:
 		sleep(refreshRate * 60)
 		for user, impersonated_statuses in usersToImpersonate:
 			since_status = None
@@ -24,7 +25,7 @@ def main():
 				since_status = impersonated_statuses[-1]
 			userTimeline = api.GetUserTimeline(screen_name=user, since_id=since_status)
 			for status in userTimeline:
-				if is_new(status=status) && !was_impersonated(status=status)
+				if is_new(status=status) and not was_impersonated(status=status):
 					impersonate(status=status)		
 	
 
