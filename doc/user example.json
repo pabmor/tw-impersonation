@@ -1,0 +1,48 @@
+{
+   "created_at":"Thu Aug 14 03:50:42 +0000 2008",
+   "description":"Comedian, talk show host and ice road trucker. My tweets are real, and they\u2019re spectacular. https://t.co/rJNCGU9GhH",
+   "favourites_count":355,
+   "followers_count":64680169,
+   "following":true,
+   "friends_count":36213,
+   "geo_enabled":true,
+   "id":15846407,
+   "lang":"en",
+   "listed_count":105456,
+   "location":"California",
+   "name":"Ellen DeGeneres",
+   "profile_background_color":"3ABEE3",
+   "profile_background_image_url":"http://pbs.twimg.com/profile_background_images/446411201413541888/uY6CCUHT.png",
+   "profile_banner_url":"https://pbs.twimg.com/profile_banners/15846407/1483484375",
+   "profile_image_url":"http://pbs.twimg.com/profile_images/816418448632754176/GVTSCBv__normal.jpg",
+   "profile_link_color":"3ABEE3",
+   "profile_sidebar_fill_color":"C4C6CC",
+   "profile_text_color":"000000",
+   "screen_name":"TheEllenShow",
+   "status":{
+      "created_at":"Mon Jan 16 17:00:03 +0000 2017",
+      "favorite_count":3979,
+      "hashtags":[
+         {
+            "text":"IHaveADream"
+         }
+      ],
+      "id":821039322019155968,
+      "id_str":"821039322019155968",
+      "lang":"en",
+      "retweet_count":802,
+      "source":"<a href=\"http://twitter.com\" rel=\"nofollow\">Twitter Web Client</a>",
+      "text":"knowing that we will be free one day. #IHaveADream",
+      "urls":[
+
+      ],
+      "user_mentions":[
+
+      ]
+   },
+   "statuses_count":13481,
+   "time_zone":"Pacific Time (US & Canada)",
+   "url":"https://t.co/t2QLdtDIfN",
+   "utc_offset":-28800,
+   "verified":true
+}
