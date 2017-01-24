@@ -18,8 +18,6 @@ class Impersonator:
 		return datetime.strptime(dt_str, '%a %b %d %H:%M:%S %z %Y')
 
 	def is_new(self, status):
-		print(self.str_to_datetime(status.created_at))
-		print('>', self.start_time)
 		return self.str_to_datetime(status.created_at) > self.start_time
 		
 	def was_impersonated(self, status, imp_statuses):
@@ -27,9 +25,7 @@ class Impersonator:
 		
 	def impersonate(self, status, imp_statuses):
 		try:
-			content = status.text.encode('utf-8')
-			content = content.decode('latin-1')
-			print("val to post", content)
+			content = status.text
 			result = self.api.PostUpdates(content)
 			imp_statuses.append(status.id);
 			print("Status Impersonated :", status)
@@ -37,7 +33,7 @@ class Impersonator:
 		except twitter.error.TwitterError as te:
 			print("Exception: ", te.args)
 		except UnicodeEncodeError as ee:
-			print("Exception: ", ee.args)
+			print("Exception:  Unicode not printable")
 
 
 	def start(self, refresh_rate=1):
