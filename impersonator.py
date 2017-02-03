@@ -6,7 +6,7 @@ from datetime import datetime, timezone, timedelta
 class Impersonator:
 
 	def __init__(self, users):
-		self.start_time = datetime.now(timezone.utc) - timedelta(days=3)
+		self.start_time = datetime.now(timezone.utc)
 		#TODO pass keys as parameter
 		self.api = twitter.Api(consumer_key='jv7jaJRwMSdZokEdgvvJ6vY3k',
 	                      consumer_secret='8hl2xeQ2IuYJnBQrF4pgoZdH1I4arPxip1jJoEcBVPebMgPyc7',
@@ -39,7 +39,9 @@ class Impersonator:
 	def start(self, refresh_rate=1):
 		pdb.set_trace()
 		while True:
-			sleep(refresh_rate * 1)
+			print("Sleeping for " + repr(refresh_rate) + " minutes")
+			sleep(refresh_rate * 60)
+			print("Sleep ended")
 			for user, impersonated_statuses in self.users.items():
 				since_status = None
 				if len(impersonated_statuses) != 0:
