@@ -2,6 +2,7 @@ import pdb
 import twitter
 from time import sleep
 from datetime import datetime, timezone, timedelta
+from data import Db
 
 class Impersonator:
 
@@ -21,6 +22,7 @@ class Impersonator:
 		return self._str_to_datetime(status.created_at) > self.start_time
 		
 	def _was_impersonated(self, status, imp_statuses):
+		
 		return status.id in imp_statuses
 		
 	def _impersonate(self, status, imp_statuses):
@@ -30,6 +32,7 @@ class Impersonator:
 			imp_statuses.append(status.id);
 			print("Status Impersonated :", status)
 			print()
+			
 		except twitter.error.TwitterError as te:
 			print("Exception: ", te.args)
 		except UnicodeEncodeError as ee:
