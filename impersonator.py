@@ -12,7 +12,7 @@ class Impersonator:
 	                      consumer_secret='8hl2xeQ2IuYJnBQrF4pgoZdH1I4arPxip1jJoEcBVPebMgPyc7',
 	                      access_token_key='817160799819010048-PPnDnUu2uZqmuXMgIgfMGZ4oZr3SXqm',
 	                      access_token_secret='Uv4uWr5lqCnaA7zjzcIzkIU87KZz31lJJ8cyYUn315e8E')
-		self.db = Db()
+		self._db = Db()
 		
 	def _str_to_datetime(self, dt_str):
 		return datetime.strptime(dt_str, '%a %b %d %H:%M:%S %z %Y')
@@ -20,17 +20,17 @@ class Impersonator:
 	def _is_new(self, status):
 		return self._str_to_datetime(status.created_at) > self.start_time
 		
-	def _was_impersonated(self, status, imp_statuses):
-		status = self.db.get_status(status.id, status.user.id)
+	def _was_impersonated(self, status):
+		status = self._db.get_status(status.id, status.user.id)
 		return status is not None
 		
-	def _impersonate(self, status, imp_statuses):
+	def _impersonate(self, status):
 		try:
 			content = status.text
 			result = self.api.PostUpdates(content)
-			imp_statuses.append(status.id);
-			print("Status Impersonated :", status)
-			print()
+			db_status = (status.id, status.user.id, status.created_at, content)
+			self._db.insert_status(db_status)
+			print("Status Impersonated :", status, end="/n")
 			
 		except twitter.error.TwitterError as te:
 			print("Exception: ", te.args)
@@ -50,8 +50,8 @@ class Impersonator:
 					since_status = impersonated_statuses[-1]
 				user_timeline = self.api.GetUserTimeline(screen_name=user, since_id=since_status)
 				for status in user_timeline:
-					if self._is_new(status=status) and not self._was_impersonated(status=status, imp_statuses=impersonated_statuses):
-						self._impersonate(status=status, imp_statuses=impersonated_statuses)		
+					if self._is_new(status=status) and not self._was_impersonated(status=status):
+						self._impersonate(status=status)		
 		
 			
 
